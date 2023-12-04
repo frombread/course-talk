@@ -1,27 +1,34 @@
 package com.example.lastproject.controller;
 
+import com.example.lastproject.service.UserSevice;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
-
-    @GetMapping("/user/save")
-    public String saveForm(){
-        return "save.html";
+    private final UserSevice userSevice;
+    @Autowired
+    public UserController(UserSevice userSevice) {
+        this.userSevice = userSevice;
     }
-
-    @PostMapping("/user/save")
-    public String save(@RequestParam("id") String id,
-                       @RequestParam("password") String password,
-                       @RequestParam("name") String name) {
-        System.out.println("UserController.save");
-        System.out.println("ID: " + id);
-        System.out.println("Password: " + password);
-        System.out.println("Name: " + name);
-
-        return "index.html";
+    @GetMapping("/login")
+    public String loginForm() {
+        return "login.html";
+    }
+    @PostMapping("/login")
+    public String login(@RequestParam("ynuNumber") Integer ynuNumber, @RequestParam("password") String password, Model model) {
+        boolean isAuthenticated = userSevice.authenticate(ynuNumber, password);
+        if (isAuthenticated) {
+            return "redirect:/index.html"; // 성공 시 리다이렉트할 페이지
+        } else {
+            System.out.println(ynuNumber);
+            System.out.println(password);
+            model.addAttribute("error", "Invalid credentials");
+            return "login.html";
+        }
     }
 }

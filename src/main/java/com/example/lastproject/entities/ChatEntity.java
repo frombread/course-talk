@@ -7,16 +7,15 @@ import java.time.LocalDateTime;
 public class ChatEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long chat_id;
+    private Long chatId;
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private UserEntity user;
 
     @ManyToOne
-    @JoinColumn(name = "course_id")
-    private LeactureEntity course;
-
+    private LectureEntity course;
     private String content;
-    private LocalDateTime created_at;
-
+    private LocalDateTime createdAt;
+//    public ChatEntity(){
+//
+//    }
 }

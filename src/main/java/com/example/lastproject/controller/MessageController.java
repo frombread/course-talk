@@ -20,7 +20,6 @@ public class MessageController extends Socket {
     public MessageController(){
 
     }
-
     @GetMapping("/")
     public String index(){
         return "index.html";

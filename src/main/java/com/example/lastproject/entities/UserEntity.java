@@ -7,17 +7,19 @@ import java.util.Set;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private Long userId;
     private String name;
-
     private String type;
-
-    private Number ynu_number;
+    private Integer ynuNumber;
+    private String passWord;
     @ManyToMany
-    private Set<LeactureEntity> lectures;
+    private Set<LectureEntity> lectures;
 
     @OneToMany(mappedBy = "user")
     private Set<ChatEntity> chats;
-
+//    public UserEntity() {
+//
+//    }
+//
     //get,set 추가해도됨
 }

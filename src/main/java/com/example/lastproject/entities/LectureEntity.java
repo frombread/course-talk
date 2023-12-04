@@ -4,17 +4,19 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class LeactureEntity {
+public class LectureEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long lecture_id;
+    private Long lectureId;
 
-    private String course_name;
-    private Number course_number;
+    private String courseName;
+    private Integer courseNumber;
     @ManyToMany(mappedBy = "lectures")
     private Set<UserEntity> users;
 
     @OneToMany(mappedBy = "course")
     private Set<ChatEntity> chats;
-
+//    public LectureEntity(){
+//
+//    }
 }
