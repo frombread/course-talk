@@ -1,4 +1,4 @@
-package com.example.lastproject;
+package com.example.lastproject.config;
 
 
 import org.springframework.context.annotation.Configuration;
