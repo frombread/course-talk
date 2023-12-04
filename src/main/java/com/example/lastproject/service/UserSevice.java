@@ -4,9 +4,6 @@ import com.example.lastproject.entities.UserEntity;
 import com.example.lastproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-
 @Service
 public class UserSevice {
     private final UserRepository userRepository;

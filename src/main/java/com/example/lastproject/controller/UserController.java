@@ -23,7 +23,7 @@ public class UserController {
     public String login(@RequestParam("ynuNumber") Integer ynuNumber, @RequestParam("password") String password, Model model) {
         boolean isAuthenticated = userSevice.authenticate(ynuNumber, password);
         if (isAuthenticated) {
-            return "redirect:/index.html"; // 성공 시 리다이렉트할 페이지
+            return "success";
         } else {
             System.out.println(ynuNumber);
             System.out.println(password);
