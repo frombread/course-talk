@@ -14,6 +14,7 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     @Setter
+    @Getter
     private String name;
     @Setter
     private String type;
@@ -24,14 +25,11 @@ public class UserEntity {
 
     @Getter
     @Setter
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<CourseEntity> courses;
 
     @OneToMany(mappedBy = "user")
     private Set<ChatEntity> chats;
-    public Long getUserId() {
-        return userId;
-    }
     //    public UserEntity() {
     //
     //    }

@@ -1,12 +1,16 @@
 //package com.example.lastproject;
 //
+//import com.example.lastproject.entities.ChatEntity;
 //import com.example.lastproject.entities.CourseEntity;
 //import com.example.lastproject.entities.UserEntity;
+//import com.example.lastproject.repository.ChatRepository;
 //import com.example.lastproject.repository.CourseRepository;
 //import com.example.lastproject.repository.UserRepository;
 //import org.springframework.boot.CommandLineRunner;
 //import org.springframework.stereotype.Component;
 //
+//import javax.transaction.Transactional;
+//import java.time.LocalDateTime;
 //import java.util.HashSet;
 //import java.util.Set;
 //
@@ -15,12 +19,14 @@
 //
 //    private final UserRepository userRepository;
 //    private final CourseRepository courseRepository;
+//    private final ChatRepository chatRepository;
 //
-//    public DataLoader(UserRepository userRepository, CourseRepository courseRepository) {
+//    public DataLoader(UserRepository userRepository, CourseRepository courseRepository, ChatRepository chatRepository) {
 //        this.userRepository = userRepository;
 //        this.courseRepository = courseRepository;
+//        this.chatRepository = chatRepository;
 //    }
-//
+//    @Transactional
 //    @Override
 //    public void run(String... args) throws Exception {
 //        UserEntity user1 = new UserEntity();
@@ -44,11 +50,22 @@
 //        courses.add(course2);
 //        user1.setCourses(courses);
 //
-//        // 먼저 사용자 저장
+//// 먼저 사용자 저장
 //        userRepository.save(user1);
 //
-//        // 사용자 저장 후에 강의 저장
+//// 사용자 저장 후에 강의 저장
 //        courseRepository.save(course1);
 //        courseRepository.save(course2);
+//
+//// ChatEntity에 대한 연관 관계 설정
+//        ChatEntity chat1 = new ChatEntity();
+//        chat1.setUser(user1);
+//        chat1.setCourse(course1);
+//        chat1.setContent("Hello, everyone!");
+//        chat1.setCreatedAt(LocalDateTime.now());
+//
+//// ChatEntity 저장
+//        chatRepository.save(chat1);
+//
 //    }
 //}
