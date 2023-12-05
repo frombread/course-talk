@@ -1,34 +1,35 @@
 package com.example.lastproject.controller;
 
+import com.example.lastproject.dto.UserLoginDTO;
 import com.example.lastproject.service.UserSevice;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class UserController {
-    private final UserSevice userSevice;
+    private final UserSevice userService;
     @Autowired
-    public UserController(UserSevice userSevice) {
-        this.userSevice = userSevice;
+    public UserController(UserSevice userService) {
+        this.userService = userService;
     }
-    @GetMapping("/login")
-    public String loginForm() {
-        return "login.html";
-    }
+
     @PostMapping("/login")
-    public String login(@RequestParam("ynuNumber") Integer ynuNumber, @RequestParam("password") String password, Model model) {
-        boolean isAuthenticated = userSevice.authenticate(ynuNumber, password);
+    public ResponseEntity<String> login(@RequestBody UserLoginDTO userLoginDTO) {
+        boolean isAuthenticated = userService.authenticate(userLoginDTO.getYnuNumber(), userLoginDTO.getPassword());
+
         if (isAuthenticated) {
-            return "success";
+            String token = String.valueOf(userLoginDTO.getYnuNumber());
+
+            return ResponseEntity.ok(token);
         } else {
-            System.out.println(ynuNumber);
-            System.out.println(password);
-            model.addAttribute("error", "Invalid credentials");
-            return "login.html";
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
 }

@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Entity
 public class UserEntity {
+    @Getter
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +29,9 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user")
     private Set<ChatEntity> chats;
-
+    public Long getUserId() {
+        return userId;
+    }
     //    public UserEntity() {
     //
     //    }
