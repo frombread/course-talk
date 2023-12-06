@@ -26,10 +26,10 @@ public class ChatService {
     }
     private ChatMessageDTO convertToDTO(ChatEntity chatEntity) {
         return new ChatMessageDTO(
-                chatEntity.getChatId(),
                 chatEntity.getUser().getName(),
                 chatEntity.getContent(),
-                chatEntity.getCreatedAt()
+                chatEntity.getCreatedAt(),
+                chatEntity.getCourse().getCourseId()
         );
     }
 }

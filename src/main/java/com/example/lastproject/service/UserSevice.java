@@ -1,5 +1,6 @@
 package com.example.lastproject.service;
 
+import com.example.lastproject.dto.UserDTO;
 import com.example.lastproject.entities.UserEntity;
 import com.example.lastproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,14 @@ public class UserSevice {
     public UserSevice(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    public boolean authenticate(Integer ynuNumber, String password) {
-        UserEntity userEntity = userRepository.findByYnuNumberAndPassWord(ynuNumber, password).orElse(null);
+    public Optional<UserDTO> authenticate(Integer ynuNumber, String password) {
+        Optional<UserEntity> userEntityOptional = userRepository.findByYnuNumberAndPassWord(ynuNumber, password);
 
-        if (userEntity != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return userEntityOptional.map(userEntity ->
+                new UserDTO(userEntity.getUserId(), userEntity.getName(),userEntity.getYnuNumber())
+        );
     }
+
     public Long findUserIdByYnuNumber(Integer ynuNumber) {
         Optional<Object> userOptional = userRepository.findByYnuNumber(ynuNumber);
         if (userOptional.isPresent()) {

@@ -14,7 +14,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config){
         config.enableSimpleBroker("/send");
+        config.setApplicationDestinationPrefixes("/app");
     }
+
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry){

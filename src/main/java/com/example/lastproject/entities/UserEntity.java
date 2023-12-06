@@ -18,6 +18,7 @@ public class UserEntity {
     private String name;
     @Setter
     private String type;
+    @Getter
     @Setter
     private Integer ynuNumber;
     @Setter

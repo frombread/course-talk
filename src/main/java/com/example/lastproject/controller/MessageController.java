@@ -2,36 +2,42 @@ package com.example.lastproject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-
 
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
-import java.net.Socket;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@Component
 @ServerEndpoint("/ws/chat/{courseId}")
-public class MessageController extends Socket {
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate;
+public class MessageController {
+    private final SimpMessagingTemplate messagingTemplate;
     private static final List<Session> sessions = new ArrayList<>();
-    public MessageController(){
+
+    @Autowired
+    public MessageController(SimpMessagingTemplate messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
     }
+
     @OnOpen
     public void open(Session newUser, @PathParam("courseId") String courseId) {
-        System.out.println("Connected");
+        System.out.println("connected");
         sessions.add(newUser);
+        System.out.println(newUser.getId());
     }
 
     @OnMessage
-    public void getMsg(@PathParam("courseId") String courseId, String msg) {
-        // 채팅 메시지를 특정 주제로 전송
-        messagingTemplate.convertAndSend("/topic/chat/" + courseId, msg);
+    public void getMsg(Session receiveSession, String msg, @PathParam("courseId") String courseId) throws IOException {
+        for (Session session : sessions) {
+            if (session.isOpen()) {
+                session.getBasicRemote().sendText(courseId +" : "+ msg);
+            }
+        }
     }
-
 }
