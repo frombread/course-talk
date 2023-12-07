@@ -13,10 +13,4 @@ public class LastprojectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LastprojectApplication.class, args);
 	}
-
-	@Bean
-	public ServerEndpointExporter serverEndpointExporter() {
-		return new ServerEndpointExporter();
-	}
-
 }

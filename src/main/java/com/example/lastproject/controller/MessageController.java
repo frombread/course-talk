@@ -1,9 +1,10 @@
 package com.example.lastproject.controller;
 
+import com.example.lastproject.config.EndpointConfigurator;
 import com.example.lastproject.service.ChatService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -16,8 +17,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-@Controller
-@ServerEndpoint("/ws/chat/{courseId}")
+@Component
+@ServerEndpoint(value = "/ws/chat/{courseId}", configurator = EndpointConfigurator.class)
 public class MessageController{
     private ChatService chatService;
     private static final List<Session> sessions = new CopyOnWriteArrayList<>();
@@ -54,7 +55,7 @@ public class MessageController{
 
         JSONObject newJsonObject = new JSONObject();
         newJsonObject.put("content", content);
-        newJsonObject.put("UserName", userName);
+        newJsonObject.put("userName", userName);
         newJsonObject.put("courseId", courseId);
         newJsonObject.put("createdAt", LocalDateTime.now());
 

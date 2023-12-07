@@ -8,6 +8,7 @@ import com.example.lastproject.repository.CourseRepository;
 import com.example.lastproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -42,6 +43,8 @@ public class ChatService {
                 chatEntity.getCourse().getCourseId()
         );
     }
+
+    @Transactional
     public void saveChatMessage(Long userId, Long courseId, String msg) {
         System.out.println("dddd : "+ msg);
         Optional<UserEntity> userEntityOptional = userRepository.findById(userId);
