@@ -30,38 +30,63 @@
 //    @Override
 //    public void run(String... args) throws Exception {
 //        UserEntity user1 = new UserEntity();
-//        user1.setName("John Doe");
-//        user1.setType("Student");
-//        user1.setYnuNumber(123456);
-//        user1.setPassWord("password123");
+//        user1.setName("방우현");
+//        user1.setType("학생");
+//        user1.setYnuNumber(21913683);
+//        user1.setPassWord("dngus2ek!");
+//
+//        UserEntity user2 = new UserEntity();
+//        user2.setName("이성균");
+//        user2.setType("학생");
+//        user2.setYnuNumber(21512125);
+//        user2.setPassWord("tjdrbs2ek!");
 //
 //        // 예시: 강의 생성
 //        CourseEntity course1 = new CourseEntity();
-//        course1.setCourseName("Introduction to Programming");
-//        course1.setCourseNumber(101);
+//        course1.setCourseName("알고리즘");
+//        course1.setCourseNumber(1259);
 //
 //        CourseEntity course2 = new CourseEntity();
-//        course2.setCourseName("Database Management");
-//        course2.setCourseNumber(201);
+//        course2.setCourseName("데이터 베이스");
+//        course2.setCourseNumber(1260);
+//
+//        CourseEntity course3 = new CourseEntity();
+//        course3.setCourseName("컴퓨터 네트워크");
+//        course3.setCourseNumber(1261);
+//
+//        CourseEntity course4 = new CourseEntity();
+//        course4.setCourseName("객체지향과 자료구조");
+//        course4.setCourseNumber(1263);
 //
 //        // 연관 관계 설정
-//        Set<CourseEntity> courses = new HashSet<>();
-//        courses.add(course1);
-//        courses.add(course2);
-//        user1.setCourses(courses);
+//        Set<CourseEntity> courses1 = new HashSet<>();
+//        Set<CourseEntity> courses2 = new HashSet<>();
+//
+//        courses1.add(course1);
+//        courses1.add(course2);
+//        courses1.add(course4);
+//        user1.setCourses(courses1);
+//
+//        courses2.add(course1);
+//        courses2.add(course3);
+//        courses2.add(course4);
+//        user2.setCourses(courses2);
 //
 //// 먼저 사용자 저장
 //        userRepository.save(user1);
+//        userRepository.save(user2);
 //
 //// 사용자 저장 후에 강의 저장
 //        courseRepository.save(course1);
 //        courseRepository.save(course2);
+//        courseRepository.save(course3);
+//        courseRepository.save(course4);
 //
 //// ChatEntity에 대한 연관 관계 설정
 //        ChatEntity chat1 = new ChatEntity();
 //        chat1.setUser(user1);
 //        chat1.setCourse(course1);
-//        chat1.setContent("Hello, everyone!");
+//        chat1.setContent("나이스요~");
 //        chat1.setCreatedAt(LocalDateTime.now());
 //
 //// ChatEntity 저장

@@ -20,8 +20,6 @@ public class ChatService {
     private final ChatRepository chatRepository;
     private final UserRepository userRepository;
     private final CourseRepository courseRepository;
-
-
     @Autowired
     public ChatService(ChatRepository chatRepository,UserRepository userRepository, CourseRepository courseRepository) {
         this.chatRepository = chatRepository;
@@ -43,7 +41,6 @@ public class ChatService {
                 chatEntity.getCourse().getCourseId()
         );
     }
-
     @Transactional
     public void saveChatMessage(Long userId, Long courseId, String msg) {
         System.out.println("dddd : "+ msg);

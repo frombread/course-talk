@@ -14,14 +14,18 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Component
 @ServerEndpoint(value = "/ws/chat/{courseId}", configurator = EndpointConfigurator.class)
 public class MessageController{
     private ChatService chatService;
-    private static final List<Session> sessions = new CopyOnWriteArrayList<>();
+//    private static final List<Session> sessions = new CopyOnWriteArrayList<>();
+    private static final Map<String, List<Session>> sessionsMap = new ConcurrentHashMap<>();
 
     public MessageController() {
         // 기본 생성자 내용 추가 (필요한 경우)
@@ -33,16 +37,16 @@ public class MessageController{
 
 
     @OnOpen
-    public void open(Session newUser) {
+    public void open(Session newUser, @PathParam("courseId") String courseId) {
         System.out.println("connected");
-        sessions.add(newUser);
+        sessionsMap.computeIfAbsent(courseId, k -> new CopyOnWriteArrayList<>()).add(newUser);
         System.out.println(newUser.getId());
     }
 
     @OnClose
-    public void onClose(Session userSession) {
+    public void onClose(Session userSession, @PathParam("courseId") String courseId) {
         System.out.println("Disconnected: " + userSession.getId());
-        sessions.remove(userSession);
+        sessionsMap.getOrDefault(courseId, Collections.emptyList()).remove(userSession);
     }
 
     @OnMessage
@@ -62,7 +66,7 @@ public class MessageController{
         chatService.saveChatMessage(userId,Long.valueOf(courseId), content);
         System.out.println(userId);
 
-        for (Session session : sessions) {
+        for (Session session : sessionsMap.getOrDefault(courseId, Collections.emptyList())) {
             if (session.isOpen()) {
                 System.out.println(newJsonObject);
                 session.getBasicRemote().sendText(String.valueOf(newJsonObject));

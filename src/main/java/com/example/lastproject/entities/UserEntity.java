@@ -17,6 +17,7 @@ public class UserEntity {
     @Getter
     private String name;
     @Setter
+    @Getter
     private String type;
     @Getter
     @Setter

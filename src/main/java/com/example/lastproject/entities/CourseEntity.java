@@ -24,10 +24,4 @@ public class CourseEntity {
     @OneToMany(mappedBy = "course")
     private Set<ChatEntity> chats;
 
-
-
-
-//    public LectureEntity(){
-//
-//    }
 }
