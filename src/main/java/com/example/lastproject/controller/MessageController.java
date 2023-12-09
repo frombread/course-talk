@@ -28,8 +28,8 @@ public class MessageController{
     private static final Map<String, List<Session>> sessionsMap = new ConcurrentHashMap<>();
 
     public MessageController() {
-        // 기본 생성자 내용 추가 (필요한 경우)
     }
+
     @Autowired
     public MessageController(ChatService chatService) {
         this.chatService = chatService;
