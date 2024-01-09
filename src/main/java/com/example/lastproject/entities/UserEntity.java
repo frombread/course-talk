@@ -32,8 +32,4 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user")
     private Set<ChatEntity> chats;
-    //    public UserEntity() {
-    //
-    //    }
-    //
 }

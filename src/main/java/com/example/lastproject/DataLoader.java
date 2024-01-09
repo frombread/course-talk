@@ -58,6 +58,10 @@
 //        course4.setCourseName("객체지향과 자료구조");
 //        course4.setCourseNumber(1263);
 //
+//        CourseEntity course5 = new CourseEntity();
+//        course5.setCourseName("인공지능");
+//        course5.setCourseNumber(1264);
+//
 //        // 연관 관계 설정
 //        Set<CourseEntity> courses1 = new HashSet<>();
 //        Set<CourseEntity> courses2 = new HashSet<>();
@@ -65,11 +69,11 @@
 //        courses1.add(course1);
 //        courses1.add(course2);
 //        courses1.add(course4);
+//        courses1.add(course5);
 //        user1.setCourses(courses1);
 //
 //        courses2.add(course1);
 //        courses2.add(course3);
-//        courses2.add(course4);
 //        user2.setCourses(courses2);
 //
 //// 먼저 사용자 저장
@@ -81,6 +85,8 @@
 //        courseRepository.save(course2);
 //        courseRepository.save(course3);
 //        courseRepository.save(course4);
+//        courseRepository.save(course5);
+//
 //
 //// ChatEntity에 대한 연관 관계 설정
 //        ChatEntity chat1 = new ChatEntity();
