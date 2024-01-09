@@ -22,18 +22,32 @@ repositories {
 
 dependencies {
 	implementation 'org.json:json:20230227'
+
+	// Spring Boot에서 JPA(Java Persistence API)를 사용하기 위한 의존성
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// Spring Boot에서 JDBC(Java Database Connectivity)를 사용하기 위한 의존성
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    runtimeOnly 'com.mysql:mysql-connector-j'
-//	implementation 'org.springframework.boot:spring-boot-starter-mustache'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	// Spring Boot에서 보안 기능을 사용하기 위한 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// Spring Boot에서 웹 기능을 사용하기 위한 의존성
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// Spring Boot에서 WebSocket을 사용하기 위한 의존성
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+	// Spring Boot에서 웹 서비스를 사용하기 위한 의존성
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// Spring Boot에서 테스트를 위한 의존성
+//	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	runtimeOnly 'com.mysql:mysql-connector-j'
 
 
 }

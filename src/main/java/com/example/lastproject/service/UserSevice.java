@@ -1,6 +1,7 @@
 package com.example.lastproject.service;
 
 import com.example.lastproject.dto.UserDTO;
+import com.example.lastproject.dto.UserInfoDTO;
 import com.example.lastproject.entities.UserEntity;
 import com.example.lastproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,21 @@ public class UserSevice {
         } else {
             return null;
         }
+    }
+    public UserInfoDTO getUserInfoByToken(Long token) {
+        Optional<UserEntity> userEntityOptional = userRepository.findByUserId(token);
+
+        return userEntityOptional.map(this::mapUserEntityToUserInfoDTO).orElse(null);
+    }
+
+    private UserInfoDTO mapUserEntityToUserInfoDTO(UserEntity userEntity) {
+        UserInfoDTO userInfoDTO = new UserInfoDTO();
+        userInfoDTO.setUserId(userEntity.getUserId());
+        userInfoDTO.setName(userEntity.getName());
+        userInfoDTO.setType(userEntity.getType());
+        userInfoDTO.setYnuNumber(userEntity.getYnuNumber());
+        // Map other fields as needed
+
+        return userInfoDTO;
     }
 }

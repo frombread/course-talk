@@ -8,4 +8,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByYnuNumberAndPassWord(Integer ynuNumber, String passWord);
 
     Optional<Object> findByYnuNumber(Integer ynuNumber);
+    Optional<UserEntity> findByUserId(Long userId);
+
 }
