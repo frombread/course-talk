@@ -2,17 +2,23 @@ package com.example.lastproject.controller;
 
 
 import com.example.lastproject.service.MailService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 public class MailController {
-    private MailService mailService;
 
-    @ResponseBody
+    private final MailService mailService;
+
+    public MailController(MailService mailService) {
+        this.mailService = mailService;
+    }
     @PostMapping("/mail")
-    public String MailSend(String mail){
+    public String mailSend(@RequestBody Map<String, String> requestBody) {
+        System.out.println(requestBody.get("email"));
+        String mail = requestBody.get("email");
         int number = mailService.sendMail(mail);
         String num = "" + number;
         return num;
