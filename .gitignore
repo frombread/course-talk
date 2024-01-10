@@ -27,7 +27,7 @@ out/
 !**/src/test/**/out/
 
 ## application
-application.properties
+**/application.properties
 
 
 ### NetBeans ###
