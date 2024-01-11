@@ -14,7 +14,7 @@ public class MailService {
     private static final String senderEmail = "gon03004@gmail.com";
     private static int number;
     public static void createNumber(){
-        number = (int)(Math.random()*(90000))*100000;
+        number = (int) ((Math.random() * 900000) + 100000);
     }
     public MimeMessage CreateMail(String mail){
         createNumber();
