@@ -1,20 +1,33 @@
 package com.example.lastproject.dto;
 
-public class UserInfoDTO {
-    private Long userId;
-    private String name;
-    private String type;
-    private Integer ynuNumber;
+import lombok.Getter;
 
-    // Constructors, getters, and setters
+public class UserInfoDTO {
+    @Getter
+    private Long userId;
+    @Getter
+    private String name;
+    @Getter
+    private String type;
+    @Getter
+    private Integer ynuNumber;
+    @Getter
+    private String password;
 
     public UserInfoDTO() {
     }
 
-    public UserInfoDTO(Long userId, String name, String type, Integer ynuNumber) {
+    public UserInfoDTO(Long userId, String name, String type, Integer ynuNumber, String password) {
         this.userId = userId;
         this.name = name;
         this.type = type;
+        this.ynuNumber = ynuNumber;
+        this.password = password;
+    }
+
+    public UserInfoDTO(String name, Long userId, Integer ynuNumber) {
+        this.name = name;
+        this.userId = userId;
         this.ynuNumber = ynuNumber;
     }
 
@@ -22,34 +35,15 @@ public class UserInfoDTO {
 
     // You can generate these methods using your IDE or write them manually
 
-    public Long getUserId() {
-        return userId;
-    }
-
     public void setUserId(Long userId) {
         this.userId = userId;
     }
-
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getType() {
-        return type;
-    }
-
     public void setType(String type) {
         this.type = type;
     }
-
-    public Integer getYnuNumber() {
-        return ynuNumber;
-    }
-
     public void setYnuNumber(Integer ynuNumber) {
         this.ynuNumber = ynuNumber;
     }

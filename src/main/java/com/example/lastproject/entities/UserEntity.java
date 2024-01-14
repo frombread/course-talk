@@ -22,7 +22,9 @@ public class UserEntity {
     @Getter
     @Setter
     private Integer ynuNumber;
+
     @Setter
+    @Getter
     private String passWord;
 
     @Getter

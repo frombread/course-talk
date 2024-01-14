@@ -24,6 +24,18 @@ public class UserSevice {
         );
     }
 
+    public Optional<UserInfoDTO> signUp(String name, String password, String type, Integer ynuNumber) {
+        UserEntity newUserEntity = new UserEntity();
+        newUserEntity.setName(name);
+        newUserEntity.setPassWord(password);
+        newUserEntity.setType(type);
+        newUserEntity.setYnuNumber(ynuNumber);
+
+        UserEntity savedUserEntity = userRepository.save(newUserEntity);
+
+        return Optional.of(new UserInfoDTO(savedUserEntity.getName(), savedUserEntity.getUserId(), savedUserEntity.getYnuNumber()));
+    }
+
     public Long findUserIdByYnuNumber(Integer ynuNumber) {
         Optional<Object> userOptional = userRepository.findByYnuNumber(ynuNumber);
         if (userOptional.isPresent()) {
